@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StudentMapper">
+
+    <insert id="add">
+        insert into `student`(student_name,student_age)
+        values (#{student.studentName},#{student.studentAge})
+    </insert>
+    <update id="update">
+        update `student`
+        set student_name=#{student01.studentName} , student_age=#{student01.studentAge}
+    </update>
+    <delete id="del">
+        delete  from `student`
+       where student_id=#{stuent_id}
+    </delete>
+
+    <resultMap id="fo" type="com.example.pojo.Student">
+        <id property="studentId" column="student_id"></id>
+        <result property="studentName" column="student_name"></result>
+        <result property="studentAge" column="student_age"></result>
+    </resultMap>
+    <select id="findBy" resultMap="fo">
+         select  student_id, student_name , student_age
+         from    `student`
+         where   student_id=#{studentId}
+    </select>
+    <resultMap id="test" type="com.example.pojo.Student">
+        <id property="studentId" column="student_id"></id>
+        <result property="studentName" column="student_name"></result>
+        <result property="studentAge" column="student_age"></result>
+    </resultMap>
+    <select id="findAll" resultMap="test">
+        select student_id, student_name , student_age from `student`;
+    </select>
+</mapper>
